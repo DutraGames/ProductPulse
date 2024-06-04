@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  postgresLibrary:
+    container_name: postgresProductPulse
+    image: postgres
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: productpulse
