@@ -1,5 +1,5 @@
 export interface IUserRepository {
-  create(data: ICreateUserDTO): Promise<IUserDTO>;
+  create(data: ICreateUserDTO): Promise<IUserDTO | Error>;
 }
 
 export interface ICreateUserDTO {
