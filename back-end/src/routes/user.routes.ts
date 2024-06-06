@@ -8,8 +8,10 @@ export async function userRoutes(app: FastifyInstance) {
       const userUseCase = new UserUseCase();
       const { name, email, password } = req.body as ICreateUserDTO;
 
-      const user = await userUseCase.create({ name, email, password });
-      return reply.status(201).send(user);
+      if (!name || !email || !password) {
+        const user = await userUseCase.create({ name, email, password });
+        return reply.status(201).send(user);
+      }
     } catch (err) {
       return reply.status(500).send();
     }
