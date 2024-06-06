@@ -1,6 +1,7 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import { userRoutes } from "./routes/user.routes";
+import { env } from "./env";
 
 const app = fastify();
 
@@ -12,10 +13,10 @@ app.get("/hello", async (request, reply) => {
 
 app.register(userRoutes, { prefix: "/users" });
 
-app.listen({ port: 3000 }, (err) => {
+app.listen({ port: env.PORT }, (err) => {
   if (err) {
     console.error(err);
     process.exit(1);
   }
-  console.log(`Server listening at http://localhost:3000`);
+  console.log(`Server listening at http://localhost:${env.PORT}`);
 });
