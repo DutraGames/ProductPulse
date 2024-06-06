@@ -1,5 +1,6 @@
 export interface IUserRepository {
   create(data: ICreateUserDTO): Promise<IUserDTO | Error>;
+  findByEmail(email: string): Promise<IUserDTO | null>;
 }
 
 export interface ICreateUserDTO {

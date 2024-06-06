@@ -7,8 +7,13 @@ import {
 import { genSalt, hash } from "bcrypt";
 
 export class UserRepository implements IUserRepository {
+  async findByEmail(email: string): Promise<IUserDTO | null> {
+    const results = await prisma.user.findUnique({ where: { email } });
+    return results;
+  }
+
   async create(data: ICreateUserDTO): Promise<IUserDTO | Error> {
-    if (await prisma.user.findUnique({ where: { email: data.email } })) {
+    if (await this.findByEmail(data.email)) {
       return new Error("User already exists");
     }
 
